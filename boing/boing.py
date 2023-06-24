@@ -1,13 +1,12 @@
 #!/usr/bin/env python
-import pgzero, pgzrun, pygame
-import math, sys, random
+import math
+import random
+import sys
 from enum import Enum
 
-# Check Python version number. sys.version_info gives version as a tuple, e.g. if (3,7,2,'final',0) for version 3.7.2.
-# Unlike many languages, Python can compare two tuples in the same way that you can compare numbers.
-if sys.version_info < (3,5):
-    print("This game requires at least version 3.5 of Python. Please download it from www.python.org")
-    sys.exit()
+import pgzero
+import pgzrun
+import pygame
 
 # Check Pygame Zero version. This is a bit trickier because Pygame Zero only lets us get its version number as a string.
 # So we have to split the string into a list, using '.' as the character to split on. We convert each element of the
@@ -16,7 +15,7 @@ if sys.version_info < (3,5):
 # We're using a Python feature called list comprehension - this is explained in the Bubble Bobble/Cavern chapter.
 pgzero_version = [int(s) if s.isnumeric() else s for s in pgzero.__version__.split('.')]
 if pgzero_version < [1,2]:
-    print("This game requires at least version 1.2 of Pygame Zero. You have version {0}. Please upgrade using the command 'pip3 install --upgrade pgzero'".format(pgzero.__version__))
+    print(f"This game requires at least version 1.2 of Pygame Zero. You have version {pgzero.__version__}. Please upgrade using the command 'pip3 install --upgrade pgzero'")
     sys.exit()
 
 # Set up constants
@@ -197,7 +196,7 @@ class Bat(Actor):
         # is meant to be player controlled, move_func will be a function that when called, returns a number indicating
         # the direction and speed in which the bat should move, based on the keys the player is currently pressing.
         # If move_func is None, this indicates that this bat should instead be controlled by the AI method.
-        if move_func != None:
+        if move_func is not None:
             self.move_func = move_func
         else:
             self.move_func = self.ai
@@ -337,7 +336,7 @@ class Game:
         # Display scores - outer loop goes through each player
         for p in (0,1):
             # Convert score into a string of 2 digits (e.g. "05") so we can later get the individual digits
-            score = "{0:02d}".format(self.bats[p].score)
+            score = f"{self.bats[p].score:02d}"
             # Inner loop goes through each digit
             for i in (0,1):
                 # Digit sprites are numbered 00 to 29, where the first digit is the colour (0 = grey,
@@ -365,7 +364,7 @@ class Game:
             # to access an attribute of Pygame Zero's sounds object, we must use Python's built-in function getattr
             try:
                 getattr(sounds, name + str(random.randint(0, count - 1))).play()
-            except Exception as e:
+            except Exception:
                 pass
 
 def p1_controls():

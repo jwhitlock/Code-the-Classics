@@ -4,9 +4,11 @@ import random
 import sys
 from enum import Enum
 
-import pgzero
 import pgzrun
 import pygame
+from pgzero import __version__ as pgzero_raw_version
+from pgzero import music
+from pgzero.actor import Actor
 
 # Check Pygame Zero version. This is a bit trickier because Pygame Zero only lets us get
 # its version number as a string.  So we have to split the string into a list, using '.'
@@ -15,11 +17,11 @@ import pygame
 # possible for a component of the version to contain letters as well as numbers (e.g.
 # '2.0.dev0') We're using a Python feature called list comprehension - this is explained
 # in the Bubble Bobble/Cavern chapter.
-pgzero_version = [int(s) if s.isnumeric() else s for s in pgzero.__version__.split(".")]
+pgzero_version = [int(s) if s.isnumeric() else s for s in pgzero_raw_version.split(".")]
 if pgzero_version < [1, 2]:
     print(
         "This game requires at least version 1.2 of Pygame Zero. You have version"
-        f" {pgzero.__version__}. Please upgrade using the command 'pip3 install"
+        f" {pgzero_raw_version}. Please upgrade using the command 'pip3 install"
         " --upgrade pgzero'"
     )
     sys.exit()

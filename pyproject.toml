@@ -43,3 +43,24 @@ builtins = [
     "storage",
     "tone",
 ]
+
+[tool.mypy]
+packages = [
+    "boing"
+]
+exclude = [
+    "^bunner/",
+    "^cavern/",
+    "^myriapod/",
+    "^soccer/",
+]
+python_version = "3.11"
+
+[[tool.mypy.overrides]]
+ignore_missing_imports = true
+module = [
+    "pgzero",
+    "pgzero.actor",
+    "pgzrun",
+]
+

@@ -24,3 +24,22 @@ exclude = [
     "myriapod",
     "soccer",
 ]
+builtins = [
+    # pyzero builtins
+    "Actor",
+    "Rect",
+    "ZRect",
+    "animate",
+    "clock",
+    "exit",
+    "images",
+    "keyboard",
+    "keymods",
+    "keys",
+    "mouse",
+    "music",
+    "screen",
+    "sounds",
+    "storage",
+    "tone",
+]

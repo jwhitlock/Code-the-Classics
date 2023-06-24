@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import pgzero, pgzrun, pygame
 import math, sys, random
 from enum import Enum
